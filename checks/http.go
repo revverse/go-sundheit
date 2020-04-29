@@ -114,7 +114,9 @@ func (check *httpCheck) Execute() (details interface{}, err error) {
 // fetchURL executes the HTTP request to the target URL, and returns a `http.Response`, error.
 // It is the callers responsibility to close the response body
 func (check *httpCheck) fetchURL() (*http.Response, error) {
-	req, err := http.NewRequest(check.config.Method, check.config.URL, check.config.Body)
+	var buf bytes.Buffer
+        _ = io.TeeReader(check.config.Body, &buf)
+	req, err := http.NewRequest(check.config.Method, check.config.URL, &buf)
 	if err != nil {
 		return nil, errors.Errorf("unable to create check HTTP request: %v", err)
 	}
