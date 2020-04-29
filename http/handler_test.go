@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AppsFlyer/go-sundheit"
-	"github.com/AppsFlyer/go-sundheit/checks"
+	"github.com/revverse/go-sundheit"
+	"github.com/revverse/go-sundheit/checks"
 	"github.com/stretchr/testify/assert"
 )
 

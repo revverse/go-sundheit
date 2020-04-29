@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/AppsFlyer/go-sundheit"
+	"github.com/revverse/go-sundheit"
 )
 
 const (
