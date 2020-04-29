@@ -24,7 +24,7 @@ type HTTPCheckConfig struct {
 	// Method is optional and defaults to `GET` if undefined.
 	Method string
 	// Body is an optional request body to be posted to the target URL.
-	Body io.Reader
+	Body string
 	// ExpectedStatus is the expected response status code, defaults to `200`.
 	ExpectedStatus int
 	// ExpectedBody is optional; if defined, operates as a basic "body should contain <string>".
@@ -114,9 +114,7 @@ func (check *httpCheck) Execute() (details interface{}, err error) {
 // fetchURL executes the HTTP request to the target URL, and returns a `http.Response`, error.
 // It is the callers responsibility to close the response body
 func (check *httpCheck) fetchURL() (*http.Response, error) {
-	var buf bytes.Buffer
-        _ = io.TeeReader(check.config.Body, &buf)
-	req, err := http.NewRequest(check.config.Method, check.config.URL, &buf)
+	req, err := http.NewRequest(check.config.Method, check.config.URL, bytes.NewReader([]byte(check.config.Body)))
 	if err != nil {
 		return nil, errors.Errorf("unable to create check HTTP request: %v", err)
 	}
