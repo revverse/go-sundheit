@@ -1,4 +1,4 @@
-module github.com/AppsFlyer/go-sundheit
+module github.com/revverse/go-sundheit
 
 go 1.13
 
