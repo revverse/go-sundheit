@@ -1,6 +1,7 @@
 package checks
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"io/ioutil"
